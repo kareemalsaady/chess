@@ -73,12 +73,34 @@ class Rook < Pieces
   end
 end
 
+class Knight < Pieces
+  def initialize(x,y)
+    @x = x
+    @y = y
+    @current_position = ([x,y])
+    @color = "black"
+    @moves = []
+    @unicode = "\u265E"
+    @unicode_white = "\u2658"
+    @unicode_black = "\u265E"
+  end
 
+  def possible_moves
+    moves = []
+    @moves = moves << [x+1,y+2]
+             moves << [x+2,y+1]
+             moves << [x+2,y-1]
+             moves << [x+1,y-2]
+             moves << [x-1,y-2]
+             moves << [x-2,y-1]
+             moves << [x-2,y+1]
+             moves << [x-1,y+2]
+    @moves.reject! { |m| m[0]<0 || m[1]<0 || m[0]>7 || m[1]>7}
+  end
+end
 
-
-t = Rook.new(0,0)
+t = Knight.new(7,7)
 t.possible_moves
-t.color = "black"
 p t
 puts t.unicode
 t.switch_color
