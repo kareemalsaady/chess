@@ -99,7 +99,56 @@ class Knight < Pieces
   end
 end
 
-t = Knight.new(7,7)
+class Bishop < Pieces
+  def initialize(x,y)
+    @x = x
+    @y = y
+    @current_position = ([x,y])
+    @color = "black"
+    @moves = []
+    @unicode = "\u265D"
+    @unicode_white = "\u2657"
+    @unicode_black = "\u265D"
+  end
+
+  def possible_moves
+    moves = []
+    @moves = moves << [x+1,y+1]
+             moves << [x+2,y+2]
+             moves << [x+3,y+3]
+             moves << [x+4,y+4]
+             moves << [x+5,y+5]
+             moves << [x+6,y+6]
+             moves << [x+7,y+7]
+
+             moves << [x-1,y-1]
+             moves << [x-2,y-2]
+             moves << [x-3,y-3]
+             moves << [x-4,y-4]
+             moves << [x-5,y-5]
+             moves << [x-6,y-6]
+             moves << [x-7,y-7]
+
+             moves << [x+1,y-1]
+             moves << [x+2,y-2]
+             moves << [x+3,y-3]
+             moves << [x+4,y-4]
+             moves << [x+5,y-5]
+             moves << [x+6,y-6]
+             moves << [x+7,y-7]
+
+             moves << [x-1,y+1]
+             moves << [x-2,y+2]
+             moves << [x-3,y+3]
+             moves << [x-4,y+4]
+             moves << [x-5,y+5]
+             moves << [x-6,y+6]
+             moves << [x-7,y+7]
+    @moves.reject! { |m| m[0]<0 || m[1]<0 || m[0]>7 || m[1]>7}
+  end
+end
+
+t = Bishop.new(4,3)
 t.possible_moves
 p t
 puts t.unicode
